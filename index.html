@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Crown Gems vs. Seals of Endeavour</title>
+  </head>
+  <body>
+    <div style="width: 100%;"><canvas id="chart"></canvas></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+    const gems = [3, 5, 16, 40, 100, 400, 1200, 1600, 2500]
+    const seals = [360, 360, 1000, 2000, 3600, 8000, 16000, 16000, 16000]
+
+    new Chart(
+        document.getElementById('chart'),
+        {
+            data: {
+                labels: ['Common', 'Fine', 'Superior', 'Epic', 'Legendary', 'Apex', 'Radiant Apex (low)', 'Radiant Apex (mid)', 'Radiant Apex (high)'],
+                datasets: [
+                    {
+                        label: 'Crown Gems',
+                        data: gems,
+                        yAxisID: 'yAxis1',
+                        type: 'line'
+                    },
+                    {
+                        label: 'Seals of Endeavour',
+                        data: seals,
+                        yAxisID: 'yAxis2',
+                        type: 'line'
+                    },
+                    {
+                        label: 'Gems per Seal',
+                        data: seals.map((sealCount, i) => gems[i] / sealCount),
+                        yAxisID: 'yAxis3',
+                        type: 'bar'
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        font: {
+                            size: 20
+                        },
+                        text: 'Crown Gems vs. Seals of Endeavour',
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'a.k.a "Why you should save Seals for Radiant Apex"',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            bottom: 10
+                        }
+                    }
+                },
+                scales: {
+                    yAxis1: {
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Gems'
+                        }
+                    },
+                    yAxis2: {
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Seals'
+                        }
+                    },
+                    yAxis3: {
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Gems per Seal'
+                        }
+                    }
+                }
+            }
+        
+        }
+    )
+    </script>
+  </body>
+</html>
+ 
